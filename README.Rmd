@@ -78,20 +78,6 @@ ggplot(data = Top[1:10,], aes(x = released, y= streak)) +
 ggplot(data = Top[1:10,], aes(x = streak, y = position)) +
   geom_point()
 
-## Lab 4 code
-
-## set your name and email
-usethis::use_git_config(user.name = "Valerie De Los Santos",
-                        user.email = "delossantosvalerie08.gmail.com")
-
-## create a personal or access token (PAT) for authentication
-usethis::create_github_token()
-
-
-## set personal access token 
-credentials::set_github_pat("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")
-
-
 
 
 
