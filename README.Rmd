@@ -1,0 +1,100 @@
+## Source of datatset
+
+https://www.kaggle.com/datasets/omarhanyy/500-greatest-songs-of-all-time
+
+my dataset is about the Top 500 songs of all time. The dataset shows the artist name, song title and description, who wrote the song, where it appears, when the song was released, what position it hit on music charts, and the streak for the number of weeks it was on charts.
+
+## reasoning for my repository
+
+I created my repository to practice graphing the statistics of songs based on long they were on music charts from their release date. 
+
+## Lab 2 code
+
+Top_500_Songs_2
+View(Top_500_Songs_2)
+Top <- Top_500_Songs_2
+summary(Top_500_Songs_2)
+summary(Top)
+str(Top)
+names(Top)
+head(Top)
+
+streak <- Top[,8] # only column 8/ streaks
+Top[1:100,8] # 1-100 songs on column 8/ streaks
+Top[1:100,] # 1-100 songs on all rows
+
+Top[,1:3] # first three columns only 
+
+
+first5 <- Top$streak[1:5]
+mean(Top$streak)
+sapply(streak, mean, na.rm = TRUE)
+
+na.rm = TRUE
+na.rm
+Top$streak <- na.rm
+
+median(Top$streak)
+
+max(Top$streak) - min(Top$streak)
+
+var(Top$streak)
+
+sd(Top$streak)
+
+
+IQR(Top$streak)
+quantile(Top$streak, 0.25)
+quantile(Top$streak, 0.75)
+
+outliers
+lower <- quantile(Top$streak, 0.25) - 1.5*IQR(Top$streak)
+upper <- quantile(Top$streak, 0.75) + 1.5*IQR(Top$streak)
+
+values <- c(Top$streak,3,9)
+values[values > lower & values < upper]
+values_no_outliers <- values[values > lower & values < upper]
+mean(Top$streak)
+median(Top$streak)
+
+## Lab 3 code
+View(Top_500_Songs_2)
+Top <- Top_500_Songs_2
+
+
+#box plot numeric
+
+ggplot(data = Top[1:10,8], aes(x = streak)) +
+  geom_boxplot()
+
+#bar plot numeric vs categorical
+
+ggplot(data = Top[1:10,], aes(x = released, y= streak)) +
+  geom_bar(stat = "summary",
+           fun = "mean") +
+
+#scatter plot numeric vs numeric
+
+ggplot(data = Top[1:10,], aes(x = streak, y = position)) +
+  geom_point()
+
+## Lab 4 code
+
+## set your name and email
+usethis::use_git_config(user.name = "Valerie De Los Santos",
+                        user.email = "delossantosvalerie08.gmail.com")
+
+## create a personal or access token (PAT) for authentication
+usethis::create_github_token()
+
+
+## set personal access token 
+credentials::set_github_pat("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")
+
+
+
+
+
+
+
+     
