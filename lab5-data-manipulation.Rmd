@@ -1,0 +1,77 @@
+```{r}
+Top_500_Songs_2
+head(Top_500_Songs_2)
+```
+
+## Subset with `filter()`
+
+```{r}
+filter(Top_500_Songs_2, artist == "Michael Jackson")
+
+filter(Top_500_Songs_2, artist == "The Beatles")
+```
+
+```{r}
+filter(Top_500_Songs_2, artist != c("The Beatles", "Chuck Berry"))
+
+```
+
+```{r}
+filter(Top_500_Songs_2, grepl("The Beatles", artist))
+
+```
+
+```{r}
+filter(Top_500_Songs_2, artist < c("The Beatles", "Chuck Berry", "The Supremes"))
+```
+
+```{r}
+filter(Top_500_Songs_2, position == "No. 1")
+```
+
+## Subset with `arrange()`
+
+```{r}
+arrange(Top_500_Songs_2, released, position)
+
+```
+
+## Subset with `select()`
+
+```{r}
+select(Top_500_Songs_2, title, position, released)
+
+select(Top_500_Songs_2, -c(description, producer, writers))
+
+select(Top_500_Songs_2, contains("No. 1"), position)
+
+```
+
+## Subset with `mutate()`
+
+```{r}
+Top_500 <- select(Top_500_Songs_2, artist, title, released)
+Top_500
+
+mutate(Top_500,
+       artist = "The Beatles")
+
+```
+
+## Subset with `summarize()`
+
+```{r}
+summarize(Top_500,
+          range_released = range(released, na.rm = T))
+
+summarise(Top_500,
+          range_released = range(released, na.rm = T),
+          .by = artist)
+```
+
+## Visualization of updated dataset
+
+```{r}
+ggplot(data = Top_500[1:10,], aes(x = released, y = artist)) +
+  geom_point()
+```
